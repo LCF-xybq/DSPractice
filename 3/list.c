@@ -6,6 +6,14 @@ struct Node {
   Position    Next;
 };
 
+List MakeEmpty(List L)
+{
+  L = malloc(sizeof(struct Node));
+  L->Element = 0;
+  L->Next = NULL;
+  return L;
+}
+
 int
 IsEmpty(List L) 
 {
@@ -84,5 +92,37 @@ DeleteList(List L)
     Tmp = P->Next;
     free(p);
     P = tmp;
+  }
+}
+
+Position 
+Header(List L)
+{
+  return L;
+}
+
+Position
+First(List L)
+{
+  if (!Isempty(L)) {
+    return L->Next;
+  }
+  return NULL;
+}
+
+Position
+Advance(Postion P)
+{
+  if (!IsLast(P)) {
+    return p->Next;
+  }
+  return NULL;
+}
+
+ElementType
+Retrieve(Position P)
+{
+  if (P != NULL) {
+    return P->Element;
   }
 }
