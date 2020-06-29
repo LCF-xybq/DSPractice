@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "list.h"
 
 struct Node {
@@ -17,13 +18,13 @@ List MakeEmpty(List L)
 int
 IsEmpty(List L) 
 {
-  return L->next == NULL;
+  return L->Next == NULL;
 }
 
 int
-IsLast(Position P, List L)
+IsLast(Position P)
 {
-  return P->next == NULL;
+  return P->Next == NULL;
 }
 
 Position
@@ -45,7 +46,7 @@ Delete(ElementType X, List L)
 
   P = FindPrevious(X, L);
 
-  if (!IsLast(P, L)) {
+  if (!IsLast(P)) {
     TmpCell = P->Next;
     P->Next = TmpCell->Next;
     free(TmpCell);
@@ -90,8 +91,8 @@ DeleteList(List L)
 
   while (P != NULL) {
     Tmp = P->Next;
-    free(p);
-    P = tmp;
+    free(P);
+    P = Tmp;
   }
 }
 
@@ -104,17 +105,17 @@ Header(List L)
 Position
 First(List L)
 {
-  if (!Isempty(L)) {
+  if (!IsEmpty(L)) {
     return L->Next;
   }
   return NULL;
 }
 
 Position
-Advance(Postion P)
+Advance(Position P)
 {
   if (!IsLast(P)) {
-    return p->Next;
+    return P->Next;
   }
   return NULL;
 }
